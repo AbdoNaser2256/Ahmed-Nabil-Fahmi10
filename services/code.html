@@ -38,55 +38,11 @@
         display: block;
       }
     </style>
+<script type="module" src="/src/main.js"></script>
 </head>
 <body class="bg-surface text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar - Replaced with the one from {{DATA:SCREEN:SCREEN_59}} style -->
-<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-primary-container/20">
-<div class="max-w-7xl mx-auto px-8 flex justify-between items-center h-24">
-<div class="flex flex-col leading-tight">
-<div class="text-2xl font-black text-primary font-['Manrope'] tracking-tight">
-                Prof. Dr Ahmed Nabil
-            </div>
-<span class="text-[10px] uppercase tracking-[0.2em] text-accent-gold font-bold">استاذ - دكتور احمد نبيل فهمي</span>
-</div>
-<div class="hidden lg:flex items-center space-x-10">
-<a class="text-on-surface/70 hover:text-primary font-['Manrope'] font-bold tracking-tight transition-all" href="#">Home</a>
-<a class="text-primary border-b-2 border-primary-container pb-1 font-['Manrope'] font-bold tracking-tight" href="#">Services</a>
-<a class="text-on-surface/70 hover:text-primary font-['Manrope'] font-bold tracking-tight transition-all" href="#">Before &amp; After</a>
-<a class="text-on-surface/70 hover:text-primary font-['Manrope'] font-bold tracking-tight transition-all" href="#">Videos</a>
-<a class="text-on-surface/70 hover:text-primary font-['Manrope'] font-bold tracking-tight transition-all" href="#">About</a>
-</div>
-<div class="flex items-center gap-4">
-<!-- Language Toggle -->
-<button class="flex items-center gap-1 text-sm font-bold text-on-surface/70 font-headline hover:bg-primary/5 px-3 py-2 rounded-full transition-all">
-<span class="material-symbols-outlined text-xl">language</span>
-<span class="ml-1">English</span>
-<span class="material-symbols-outlined text-lg opacity-50">keyboard_arrow_down</span>
-</button>
-<!-- Call Dropdown -->
-<div class="relative dropdown">
-<button class="flex items-center gap-2 border-2 border-primary text-primary px-5 py-2.5 rounded-full font-headline font-bold hover:bg-primary/5 transition-all">
-<span>Call</span>
-<span class="material-symbols-outlined text-lg">keyboard_arrow_down</span>
-</button>
-<div class="dropdown-content absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-primary-container/20 py-2 z-[60]">
-<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container text-on-surface font-medium transition-colors" href="tel:+2021234567">
-<span class="material-symbols-outlined text-primary">phone</span> Call Now
-                    </a>
-<button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-surface-container text-on-surface font-medium transition-colors" onclick="navigator.clipboard.writeText('+20 2 123 4567')">
-<span class="material-symbols-outlined text-primary">content_copy</span> Copy Number
-                    </button>
-<button class="w-full flex items-center gap-3 px-4 py-3 hover:bg-surface-container text-on-surface font-medium transition-colors">
-<span class="material-symbols-outlined text-primary">share</span> Share Contact
-                    </button>
-</div>
-</div>
-<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-headline font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/10 border border-primary-container/30">
-                Book Now
-            </button>
-</div>
-</div>
-</nav>
+<div id="site-header"></div>
 <main class="pt-24">
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-surface py-24 lg:py-32">
