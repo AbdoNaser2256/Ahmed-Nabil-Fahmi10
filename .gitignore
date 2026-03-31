@@ -1,4 +1,5 @@
 node_modules/
 dist/
 .wrangler/
-.dev.varsvite_output.log
+.dev.vars
+vite_output.log

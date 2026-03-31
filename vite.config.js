@@ -23,7 +23,8 @@ export default defineConfig({
         'cosmetic-fillings': 'services/cosmetic-fillings.html',
         orthodontics: 'services/orthodontics.html',
         'teeth-whitening': 'services/teeth-whitening.html',
-        'casted-crown': 'services/casted-crown.html'
+        'casted-crown': 'services/casted-crown.html',
+        'global_header': 'global_header.html'
       }
     }
   },
