@@ -10,10 +10,8 @@ export async function initClinic() {
   // Inject the global header into any page with #site-header
   await injectHeader();
   
-  // Hardcode english language for now while preserving the infrastructure for future arabic translations
-  // const currentLang = localStorage.getItem('clinic_lang') || 'en';
-  const currentLang = 'en';
-  localStorage.setItem('clinic_lang', 'en');
+  // Implementation of language toggle and dynamic UI updates
+  const currentLang = localStorage.getItem('clinic_lang') || 'en';
   applyTranslations(currentLang);
 }
 
