@@ -20,7 +20,11 @@ async function injectHeader() {
   if (!headerContainer) return;
 
   try {
-    const response = await fetch('/global_header.html');
+    // Attempt to fetch /global_header first (Cloudflare clean URLs), fallback to .html
+    let response = await fetch('/global_header');
+    if (!response.ok) {
+        response = await fetch('/global_header.html');
+    }
     if (!response.ok) throw new Error('Header not found');
     const html = await response.text();
     headerContainer.innerHTML = html;
