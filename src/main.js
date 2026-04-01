@@ -1,3 +1,4 @@
+import './style.css';
 import { clinicConfig } from './config.js';
 import { ar } from './translations/ar.js';
 import { en } from './translations/en.js';
@@ -9,6 +10,9 @@ export async function initClinic() {
   
   // Inject the global header into any page with #site-header
   await injectHeader();
+  
+  // Inject the global footer
+  await injectFooter();
   
   // Implementation of language toggle and dynamic UI updates
   const currentLang = localStorage.getItem('clinic_lang') || 'en';
@@ -77,6 +81,27 @@ async function injectHeader() {
     console.log('Global Header injected successfully.');
   } catch (error) {
     console.error('Error loading global header:', error);
+  }
+}
+
+async function injectFooter() {
+  try {
+    // Remove all existing footers from the page
+    document.querySelectorAll('footer').forEach(footer => footer.remove());
+    
+    // Fetch the global footer
+    let response = await fetch('/global_footer');
+    if (!response.ok) {
+        response = await fetch('/global_footer.html');
+    }
+    if (!response.ok) throw new Error('Footer not found');
+    const html = await response.text();
+    
+    // Insert footer before closing body tag
+    document.body.insertAdjacentHTML('beforeend', html);
+    console.log('Global Footer injected successfully.');
+  } catch (error) {
+    console.error('Error loading global footer:', error);
   }
 }
 
