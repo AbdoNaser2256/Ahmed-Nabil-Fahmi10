@@ -13,6 +13,52 @@ export async function initClinic() {
   // Implementation of language toggle and dynamic UI updates
   const currentLang = localStorage.getItem('clinic_lang') || 'en';
   applyTranslations(currentLang);
+
+  // Highlight active link in the navigation menu
+  highlightActiveNavLink();
+}
+
+function highlightActiveNavLink() {
+  const currentPath = window.location.pathname;
+
+  // Clean the path to handle Cloudflare's extensionless URLs vs local .html
+  const isHome = currentPath === '/' || currentPath.endsWith('index.html') || currentPath.endsWith('index');
+  const cleanCurrentPath = currentPath.replace('.html', '');
+
+  // 1. Highlight standard nav links (Home, Before & After, Videos, About)
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const linkPath = new URL(link.href).pathname.replace('.html', '');
+
+    let isActive = false;
+
+    // Check Home separately
+    if (isHome && (linkPath === '/' || linkPath.endsWith('index'))) {
+      isActive = true;
+    }
+    // Check exact matches for other pages
+    else if (!isHome && linkPath !== '/' && !linkPath.endsWith('index') && cleanCurrentPath === linkPath) {
+      isActive = true;
+    }
+
+    if (isActive) {
+      // Apply active states
+      link.classList.remove('text-slate-600', 'hover:text-teal-800');
+      link.classList.add('text-teal-700', 'border-b-2', 'border-teal-600', 'pb-1');
+    }
+  });
+
+  // 2. Highlight the "Services" Dropdown Button if the user is in the /services/ folder
+  if (cleanCurrentPath.startsWith('/services') || cleanCurrentPath === '/services') {
+    // Find the Services button (it's the button directly inside .nav-dropdown)
+    const servicesBtn = document.querySelector('.nav-dropdown > button');
+    if (servicesBtn) {
+      servicesBtn.classList.remove('text-slate-600', 'hover:text-teal-800');
+      servicesBtn.classList.add('text-teal-700', 'border-b-2', 'border-teal-600');
+      // Ensure the chevron matches the text color
+      const chevron = servicesBtn.querySelector('.material-symbols-outlined');
+      if (chevron) chevron.classList.remove('text-slate-600');
+    }
+  }
 }
 
 async function injectHeader() {
