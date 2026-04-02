@@ -106,13 +106,15 @@
 <body class="bg-surface text-on-surface font-body antialiased">
 <!-- Global Header Copied Directly -->
 <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-sm">
-<div class="max-w-7xl mx-auto px-8 flex justify-between items-center h-20">
-<div class="text-2xl font-bold tracking-tighter text-teal-900 flex items-center gap-2 font-headline">
+<div class="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center h-16 sm:h-20">
+<!-- Logo -->
+<div class="text-xl sm:text-2xl font-bold tracking-tighter text-teal-900 flex items-center gap-2 font-headline">
 <div class="flex flex-col leading-tight">
 <div class="flex items-center gap-2">Prof. Dr Ahmed Nabil</div>
+</div>
+</div>
 
-</div>
-</div>
+<!-- Desktop Navigation -->
 <div class="hidden lg:flex items-center gap-x-8">
 <a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/index.html">Home</a>
 <div class="relative nav-dropdown">
@@ -170,8 +172,66 @@ Call
                 Book Now
             </button>
 </div>
+
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-teal-50 transition-colors">
+<span class="material-symbols-outlined text-2xl text-teal-900">menu</span>
+</button>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden lg:hidden fixed inset-0 top-16 sm:top-20 bg-surface z-40">
+<div class="flex flex-col h-full overflow-y-auto">
+<div class="px-4 py-6 space-y-4">
+<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/index.html">Home</a>
+<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/before-after.html">Before & After</a>
+<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/videos.html">Videos</a>
+<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/about.html">About</a>
+
+<!-- Mobile Services -->
+<div class="border-t border-slate-200 pt-4 mt-4">
+<p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Services</p>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/dental-implants.html">Dental Implants</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/hollywood-smile.html">Hollywood Smile</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/veneers.html">Veneers</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/root-canal.html">Root Canal Treatment</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/childrens-teeth.html">Children's Teeth</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/gum-depigmentation.html">Gum Depigmentation</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/cosmetic-fillings.html">Cosmetic Fillings</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/orthodontics.html">Orthodontics</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/teeth-whitening.html">Teeth Whitening</a>
+<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/casted-crown.html">Casted Crown</a>
+</div>
+
+<!-- Mobile Actions -->
+<div class="border-t border-slate-200 pt-4 mt-4 space-y-3">
+<a href="tel:+201002345678" class="block py-3 px-4 bg-teal-50 text-teal-900 font-headline font-bold rounded-lg text-center">
+<span class="material-symbols-outlined text-lg align-middle">call</span> Call Now
+</a>
+<button class="w-full py-3 px-4 bg-accent-gold text-white font-headline font-bold rounded-lg">
+Book Appointment
+</button>
+</div>
+</div>
+</div>
 </div>
 </nav>
+
+<script>
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      const icon = this.querySelector('.material-symbols-outlined');
+      icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+  }
+});
+</script>
 
 
 
