@@ -220,30 +220,6 @@ Book Appointment
 </div>
 </nav>
 
-<script>
-// Mobile menu toggle - with debugging
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Mobile menu script running...');
-  
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  console.log('Button found:', mobileMenuBtn);
-  console.log('Menu found:', mobileMenu);
-  
-  if (mobileMenuBtn && mobileMenu) {
-    console.log('Adding click listener...');
-    mobileMenuBtn.addEventListener('click', function(e) {
-      console.log('Hamburger clicked!');
-      mobileMenu.classList.toggle('hidden');
-      console.log('Menu hidden class:', mobileMenu.classList.contains('hidden'));
-    });
-  } else {
-    console.error('Mobile menu elements not found!');
-  }
-});
-</script>
-
 
 
 <main class="pt-20">
