@@ -223,8 +223,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', function() {
       mobileMenu.classList.toggle('hidden');
-      const icon = this.querySelector('.material-symbols-outlined');
-      icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
     });
   }
 });
