@@ -23,12 +23,18 @@
         align-items: center;
         height: 5rem;
       }
-      /* Lock logo size to prevent font loading shift */
+      /* Lock logo size to prevent font loading shift - match Tailwind responsive sizes */
       nav > div > div:first-child {
-        font-size: 1.5rem;
+        font-size: 1.25rem; /* text-xl */
         font-weight: 700;
         font-family: system-ui, -apple-system, sans-serif;
         color: #134e4a;
+        letter-spacing: -0.05em;
+      }
+      @media (min-width: 640px) {
+        nav > div > div:first-child {
+          font-size: 1.5rem; /* text-2xl */
+        }
       }
       
       /* Inline SVG dropdown arrow styling */
