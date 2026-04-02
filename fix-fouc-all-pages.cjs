@@ -51,6 +51,13 @@ const newCSS = `      /* Critical header styles to prevent layout shift before T
         align-items: center;
         height: 5rem;
       }
+      /* Lock logo size to prevent font loading shift */
+      nav > div > div:first-child {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #134e4a;
+      }
       
       /* Inline SVG dropdown arrow styling */
       .dropdown-arrow {
@@ -118,10 +125,9 @@ const newLanguageIcon = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xm
 <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
 </svg>`;
 
-// Hide Language/Call on mobile
-const oldActionsDiv = `<div class="flex items-center gap-4">`;
-const newActionsDiv = `<!-- Desktop Actions - Hidden on Mobile -->
-<div class="hidden lg:flex items-center gap-4">`;
+// Replace font display
+const oldFontDisplay = `display=swap`;
+const newFontDisplay = `display=optional`;
 
 // Replace mobile menu icon
 const oldMobileIcon = `<span class="material-symbols-outlined text-2xl text-teal-900">menu</span>`;
@@ -152,8 +158,8 @@ htmlFiles.forEach(file => {
     // Replace language icon
     content = content.replace(oldLanguageIcon, newLanguageIcon);
     
-    // Hide actions on mobile
-    content = content.replace(oldActionsDiv, newActionsDiv);
+    // Replace font display
+    content = content.replace(oldFontDisplay, newFontDisplay);
     
     // Replace mobile menu icon
     content = content.replace(oldMobileIcon, newMobileIcon);
