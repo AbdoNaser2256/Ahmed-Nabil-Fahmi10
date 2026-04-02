@@ -4,16 +4,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>
-      /* CSS-only dropdown arrow - no font loading needed */
+      /* Image-based dropdown arrow */
       .dropdown-arrow {
         display: inline-block;
-        width: 0;
-        height: 0;
+        width: 12px;
+        height: 8px;
         margin-left: 0.25rem;
-        vertical-align: middle;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid currentColor;
+        filter: brightness(0) saturate(100%);
+        opacity: 0.6;
       }
       
       /* CSS-only hamburger menu icon */
@@ -82,7 +80,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
         Services
-        <span class="dropdown-arrow"></span>
+        <img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
 </button>
 <div class="nav-dropdown-content hidden absolute left-0 top-full pt-4 w-64 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -103,13 +101,14 @@
 <a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/videos.html">Videos</a>
 <a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/about.html">About</a>
 </div>
-<div class="flex items-center gap-4">
+<!-- Desktop Actions - Hidden on Mobile -->
+<div class="hidden lg:flex items-center gap-4">
 <!-- Language Dropdown -->
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
-<span class="material-symbols-outlined text-xl">language</span>
+<img src="/assets/images/language-icon.svg" alt="Language" class="w-5 h-5" />
 <span class="ml-1">English</span>
-<span class="dropdown-arrow"></span>
+<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -121,7 +120,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 Call
-<span class="dropdown-arrow"></span>
+<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">

@@ -32,16 +32,14 @@ const oldCSS = `      /* Hide material icons until font loads to prevent text fl
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }`;
 
-const newCSS = `      /* CSS-only dropdown arrow - no font loading needed */
+const newCSS = `      /* Image-based dropdown arrow */
       .dropdown-arrow {
         display: inline-block;
-        width: 0;
-        height: 0;
+        width: 12px;
+        height: 8px;
         margin-left: 0.25rem;
-        vertical-align: middle;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid currentColor;
+        filter: brightness(0) saturate(100%);
+        opacity: 0.6;
       }
       
       /* CSS-only hamburger menu icon */
@@ -91,8 +89,17 @@ const oldScript = `      // Show icons once fonts and Tailwind are ready
 const newScript = ``;
 
 // Replace dropdown arrows
-const oldArrow = `<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>`;
-const newArrow = `<span class="dropdown-arrow"></span>`;
+const oldArrow = `<span class="dropdown-arrow"></span>`;
+const newArrow = `<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />`;
+
+// Replace language icon
+const oldLanguageIcon = `<span class="material-symbols-outlined text-xl">language</span>`;
+const newLanguageIcon = `<img src="/assets/images/language-icon.svg" alt="Language" class="w-5 h-5" />`;
+
+// Hide Language/Call on mobile
+const oldActionsDiv = `<div class="flex items-center gap-4">`;
+const newActionsDiv = `<!-- Desktop Actions - Hidden on Mobile -->
+<div class="hidden lg:flex items-center gap-4">`;
 
 // Replace mobile menu icon
 const oldMobileIcon = `<span class="material-symbols-outlined text-2xl text-teal-900">menu</span>`;
@@ -119,6 +126,12 @@ htmlFiles.forEach(file => {
     
     // Replace dropdown arrows
     content = content.replaceAll(oldArrow, newArrow);
+    
+    // Replace language icon
+    content = content.replace(oldLanguageIcon, newLanguageIcon);
+    
+    // Hide actions on mobile
+    content = content.replace(oldActionsDiv, newActionsDiv);
     
     // Replace mobile menu icon
     content = content.replace(oldMobileIcon, newMobileIcon);
