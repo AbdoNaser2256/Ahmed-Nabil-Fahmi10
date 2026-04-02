@@ -4,22 +4,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>
-      /* Prevent FOUC with loading overlay */
-      #loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #f8fafb;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      /* Hide material icons until font loads to prevent text flash */
+      .material-symbols-outlined {
+        visibility: hidden;
       }
       
-      body.loaded #loading-overlay {
-        display: none;
+      /* Show icons once font is loaded */
+      body.fonts-loaded .material-symbols-outlined {
+        visibility: visible;
       }
       
       .material-symbols-outlined {
@@ -58,37 +50,33 @@
 
   
   <script>
-    // Show body once Tailwind is ready
-    (function() {
-      // Wait for Tailwind to process styles
-      function checkTailwind() {
-        const testEl = document.createElement('div');
-        testEl.className = 'hidden';
-        document.body.appendChild(testEl);
-        const isHidden = window.getComputedStyle(testEl).display === 'none';
-        document.body.removeChild(testEl);
-        
-        if (isHidden) {
-          document.body.classList.add('loaded');
-        } else {
-          setTimeout(checkTailwind, 50);
+    // Show icons once fonts and Tailwind are ready
+      (function() {
+        function checkReady() {
+          // Check if Tailwind is loaded
+          const testEl = document.createElement('div');
+          testEl.className = 'hidden';
+          document.body.appendChild(testEl);
+          const isHidden = window.getComputedStyle(testEl).display === 'none';
+          document.body.removeChild(testEl);
+          
+          if (isHidden) {
+            document.body.classList.add('loaded');
+            document.body.classList.add('fonts-loaded');
+          } else {
+            setTimeout(checkReady, 50);
+          }
         }
-      }
-      
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkTailwind);
-      } else {
-        checkTailwind();
-      }
-    })();
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', checkReady);
+        } else {
+          checkReady();
+        }
+      })();
   </script>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container lotus-bg">
-<!-- Loading Overlay -->
-<div id="loading-overlay">
-<div class="w-12 h-12 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin"></div>
-</div>
-
 <!-- Global Header Copied Directly -->
 <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-sm">
 <div class="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center h-16 sm:h-20">
