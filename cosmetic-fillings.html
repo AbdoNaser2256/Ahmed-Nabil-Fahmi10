@@ -52,30 +52,7 @@
   <script type="module" src="/src/main.js"></script>
 
     <script>
-      // Show icons once fonts and Tailwind are ready
-      (function() {
-        function checkReady() {
-          // Check if Tailwind is loaded
-          const testEl = document.createElement('div');
-          testEl.className = 'hidden';
-          document.body.appendChild(testEl);
-          const isHidden = window.getComputedStyle(testEl).display === 'none';
-          document.body.removeChild(testEl);
-          
-          if (isHidden) {
-            document.body.classList.add('loaded');
-            document.body.classList.add('fonts-loaded');
-          } else {
-            setTimeout(checkReady, 50);
-          }
-        }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', checkReady);
-        } else {
-          checkReady();
-        }
-      })();
+
     </script>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased">
@@ -95,7 +72,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
         Services
-        <span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+        <span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute left-0 top-full pt-4 w-64 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -122,7 +99,7 @@
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 <span class="material-symbols-outlined text-xl">language</span>
 <span class="ml-1">English</span>
-<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+<span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -134,7 +111,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 Call
-<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+<span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">

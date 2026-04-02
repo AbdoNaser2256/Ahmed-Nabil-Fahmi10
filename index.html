@@ -4,17 +4,20 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>
+      /* CSS-only dropdown arrow - no font loading needed */
+      .dropdown-arrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 0.25rem;
+        vertical-align: middle;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid currentColor;
+      }
+      
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        /* Prevent text content from showing as fallback */
-        color: transparent;
-        user-select: none;
-      }
-      /* Once font loads, show the icon */
-      @supports (font-variation-settings: normal) {
-        .material-symbols-outlined {
-          color: inherit;
-        }
       }
       .glass-nav {
         background: rgba(255, 255, 255, 0.9);
@@ -64,7 +67,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
         Services
-        <span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+        <span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute left-0 top-full pt-4 w-64 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -91,7 +94,7 @@
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 <span class="material-symbols-outlined text-xl">language</span>
 <span class="ml-1">English</span>
-<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+<span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -103,7 +106,7 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 Call
-<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>
+<span class="dropdown-arrow"></span>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
