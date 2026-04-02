@@ -4,39 +4,21 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const foucFix = `
+const newScript = `
   <script>
-    // Show body once Tailwind is ready
-    (function() {
-      // Wait for Tailwind to process styles
-      function checkTailwind() {
-        const testEl = document.createElement('div');
-        testEl.className = 'hidden';
-        document.body.appendChild(testEl);
-        const isHidden = window.getComputedStyle(testEl).display === 'none';
-        document.body.removeChild(testEl);
-        
-        if (isHidden) {
-          document.body.classList.add('loaded');
-        } else {
-          setTimeout(checkTailwind, 50);
-        }
-      }
-      
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkTailwind);
-      } else {
-        checkTailwind();
-      }
-    })();
+    // Show body immediately after a tiny delay to ensure styles are parsed
+    setTimeout(function() {
+      document.body.classList.add('loaded');
+    }, 100);
   </script>`;
 
-const cssAddition = `      /* Prevent FOUC (Flash of Unstyled Content) */
+const newCSS = `      /* Prevent FOUC (Flash of Unstyled Content) */
       body {
-        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
       }
       body.loaded {
-        visibility: visible;
+        opacity: 1;
       }
       
 `;
@@ -68,17 +50,20 @@ htmlFiles.forEach(file => {
 
   let content = fs.readFileSync(filePath, 'utf-8');
 
-  // Replace old script with new one
-  if (content.includes('body.classList.add')) {
-    content = content.replace(
-      /<script>\s*\/\/ Show body once page is loaded[\s\S]*?<\/script>/,
-      foucFix
-    );
-    fs.writeFileSync(filePath, content, 'utf-8');
-    console.log(`✅ Updated FOUC fix: ${file}`);
-  } else {
-    console.log(`⚠️  Script not found in: ${file}`);
-  }
+  // Replace CSS
+  content = content.replace(
+    /\/\* Prevent FOUC[\s\S]*?body\.loaded \{\s*visibility: visible;\s*\}/,
+    newCSS.trim() + '\n      body.loaded {\n        opacity: 1;\n      }'
+  );
+
+  // Replace script
+  content = content.replace(
+    /<script>\s*\/\/ Show body[\s\S]*?<\/script>/,
+    newScript
+  );
+
+  fs.writeFileSync(filePath, content, 'utf-8');
+  console.log(`✅ Simplified FOUC fix: ${file}`);
 });
 
-console.log('✨ FOUC fix update complete!');
+console.log('✨ FOUC simplification complete!');
