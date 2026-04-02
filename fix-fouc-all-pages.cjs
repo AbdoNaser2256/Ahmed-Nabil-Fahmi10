@@ -44,6 +44,21 @@ const newCSS = `      /* CSS-only dropdown arrow - no font loading needed */
         border-top: 5px solid currentColor;
       }
       
+      /* CSS-only hamburger menu icon */
+      .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+      }
+      .hamburger-icon span {
+        display: block;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 2px;
+      }
+      
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }`;
@@ -79,6 +94,19 @@ const newScript = ``;
 const oldArrow = `<span class="material-symbols-outlined text-lg leading-none">keyboard_arrow_down</span>`;
 const newArrow = `<span class="dropdown-arrow"></span>`;
 
+// Replace mobile menu icon
+const oldMobileIcon = `<span class="material-symbols-outlined text-2xl text-teal-900">menu</span>`;
+const newMobileIcon = `<div class="hamburger-icon text-teal-900">
+<span></span>
+<span></span>
+<span></span>
+</div>`;
+
+// Replace mobile menu script
+const oldMobileScript = `      const icon = this.querySelector('.material-symbols-outlined');
+      icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';`;
+const newMobileScript = ``;
+
 htmlFiles.forEach(file => {
   try {
     let content = fs.readFileSync(file, 'utf8');
@@ -91,6 +119,12 @@ htmlFiles.forEach(file => {
     
     // Replace dropdown arrows
     content = content.replaceAll(oldArrow, newArrow);
+    
+    // Replace mobile menu icon
+    content = content.replace(oldMobileIcon, newMobileIcon);
+    
+    // Replace mobile menu script
+    content = content.replace(oldMobileScript, newMobileScript);
     
     fs.writeFileSync(file, content, 'utf8');
     console.log(`✓ Fixed ${file}`);
