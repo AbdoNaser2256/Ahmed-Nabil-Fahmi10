@@ -49,8 +49,10 @@ htmlFiles.forEach(file => {
 
   let content = fs.readFileSync(filePath, 'utf-8');
 
-  // Remove existing footer if present
-  content = content.replace(/<footer[\s\S]*?<\/footer>[\s\S]*?<\/a>\s*<\/body>/i, '</body>');
+  // Remove existing footer and WhatsApp button if present
+  content = content.replace(/<footer[\s\S]*?<\/footer>[\s\S]*?<\/a>\s*/i, '');
+  // Also remove any standalone WhatsApp buttons that might exist
+  content = content.replace(/<a[^>]*href="https:\/\/wa\.me\/[^"]*"[^>]*>[\s\S]*?<\/a>\s*/i, '');
 
   // Insert footer before closing body tag
   content = content.replace('</body>', `${footerContent}\n</body>`);

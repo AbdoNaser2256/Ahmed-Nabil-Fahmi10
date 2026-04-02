@@ -11,8 +11,8 @@ export async function initClinic() {
   // Inject the global header into any page with #site-header
   await injectHeader();
   
-  // Inject the global footer
-  await injectFooter();
+  // Footer is now injected during build process, no need for JS injection
+  // await injectFooter();
   
   // Implementation of language toggle and dynamic UI updates
   const currentLang = localStorage.getItem('clinic_lang') || 'en';
