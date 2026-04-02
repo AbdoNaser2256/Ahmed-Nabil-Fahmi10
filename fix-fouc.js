@@ -4,21 +4,39 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const newScript = `
+const foucFix = `
   <script>
-    // Show body immediately after a tiny delay to ensure styles are parsed
-    setTimeout(function() {
-      document.body.classList.add('loaded');
-    }, 100);
+    // Show body once Tailwind is ready
+    (function() {
+      // Wait for Tailwind to process styles
+      function checkTailwind() {
+        const testEl = document.createElement('div');
+        testEl.className = 'hidden';
+        document.body.appendChild(testEl);
+        const isHidden = window.getComputedStyle(testEl).display === 'none';
+        document.body.removeChild(testEl);
+        
+        if (isHidden) {
+          document.body.classList.add('loaded');
+        } else {
+          setTimeout(checkTailwind, 50);
+        }
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTailwind);
+      } else {
+        checkTailwind();
+      }
+    })();
   </script>`;
 
-const newCSS = `      /* Prevent FOUC (Flash of Unstyled Content) */
+const cssAddition = `      /* Prevent FOUC (Flash of Unstyled Content) */
       body {
-        opacity: 0;
-        transition: opacity 0.3s ease-in;
+        visibility: hidden;
       }
       body.loaded {
-        opacity: 1;
+        visibility: visible;
       }
       
 `;
@@ -50,20 +68,17 @@ htmlFiles.forEach(file => {
 
   let content = fs.readFileSync(filePath, 'utf-8');
 
-  // Replace CSS
-  content = content.replace(
-    /\/\* Prevent FOUC[\s\S]*?body\.loaded \{\s*visibility: visible;\s*\}/,
-    newCSS.trim() + '\n      body.loaded {\n        opacity: 1;\n      }'
-  );
-
-  // Replace script
-  content = content.replace(
-    /<script>\s*\/\/ Show body[\s\S]*?<\/script>/,
-    newScript
-  );
-
-  fs.writeFileSync(filePath, content, 'utf-8');
-  console.log(`✅ Simplified FOUC fix: ${file}`);
+  // Replace old script with new one
+  if (content.includes('body.classList.add')) {
+    content = content.replace(
+      /<script>\s*\/\/ Show body once page is loaded[\s\S]*?<\/script>/,
+      foucFix
+    );
+    fs.writeFileSync(filePath, content, 'utf-8');
+    console.log(`✅ Updated FOUC fix: ${file}`);
+  } else {
+    console.log(`⚠️  Script not found in: ${file}`);
+  }
 });
 
-console.log('✨ FOUC simplification complete!');
+console.log('✨ FOUC fix update complete!');

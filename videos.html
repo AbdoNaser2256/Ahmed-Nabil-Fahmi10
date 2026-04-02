@@ -10,14 +10,10 @@
 <style>
       /* Prevent FOUC (Flash of Unstyled Content) */
       body {
-        opacity: 0;
-        transition: opacity 0.3s ease-in;
+        visibility: hidden;
       }
       body.loaded {
-        opacity: 1;
-      }
-      body.loaded {
-        opacity: 1;
+        visibility: visible;
       }
       
       .material-symbols-outlined {
@@ -48,12 +44,30 @@
   <script type="module" src="/src/main.js"></script>
 
   
-  
   <script>
-    // Show body immediately after a tiny delay to ensure styles are parsed
-    setTimeout(function() {
-      document.body.classList.add('loaded');
-    }, 100);
+    // Show body once Tailwind is ready
+    (function() {
+      // Wait for Tailwind to process styles
+      function checkTailwind() {
+        const testEl = document.createElement('div');
+        testEl.className = 'hidden';
+        document.body.appendChild(testEl);
+        const isHidden = window.getComputedStyle(testEl).display === 'none';
+        document.body.removeChild(testEl);
+        
+        if (isHidden) {
+          document.body.classList.add('loaded');
+        } else {
+          setTimeout(checkTailwind, 50);
+        }
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTailwind);
+      } else {
+        checkTailwind();
+      }
+    })();
   </script>
 </head>
 <body class="bg-surface font-body text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
