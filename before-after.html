@@ -27,6 +27,18 @@
       }
       body.loaded nav {
         opacity: 1;
+      }      
+      /* Critical inline styles for nav to prevent flash */
+      nav.fixed {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background-color: rgba(248, 250, 251, 0.8);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        transition: all 0.3s;
       }
       
       .material-symbols-outlined {
