@@ -32,13 +32,30 @@ const oldCSS = `      /* Hide material icons until font loads to prevent text fl
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       }`;
 
-const newCSS = `      /* Image-based dropdown arrow */
+const newCSS = `      /* Critical header styles to prevent layout shift before Tailwind loads */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background-color: rgba(248, 250, 251, 0.8);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      nav > div {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+      }
+      
+      /* Inline SVG dropdown arrow styling */
       .dropdown-arrow {
         display: inline-block;
-        width: 12px;
-        height: 8px;
         margin-left: 0.25rem;
-        filter: brightness(0) saturate(100%);
         opacity: 0.6;
       }
       
@@ -89,12 +106,17 @@ const oldScript = `      // Show icons once fonts and Tailwind are ready
 const newScript = ``;
 
 // Replace dropdown arrows
-const oldArrow = `<span class="dropdown-arrow"></span>`;
-const newArrow = `<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />`;
+const oldArrow = `<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />`;
+const newArrow = `<svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
 
 // Replace language icon
-const oldLanguageIcon = `<span class="material-symbols-outlined text-xl">language</span>`;
-const newLanguageIcon = `<img src="/assets/images/language-icon.svg" alt="Language" class="w-5 h-5" />`;
+const oldLanguageIcon = `<img src="/assets/images/language-icon.svg" alt="Language" class="w-5 h-5" />`;
+const newLanguageIcon = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+<path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
+</svg>`;
 
 // Hide Language/Call on mobile
 const oldActionsDiv = `<div class="flex items-center gap-4">`;

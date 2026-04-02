@@ -4,13 +4,30 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>
-      /* Image-based dropdown arrow */
+      /* Critical header styles to prevent layout shift before Tailwind loads */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background-color: rgba(248, 250, 251, 0.8);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      nav > div {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+      }
+      
+      /* Inline SVG dropdown arrow styling */
       .dropdown-arrow {
         display: inline-block;
-        width: 12px;
-        height: 8px;
         margin-left: 0.25rem;
-        filter: brightness(0) saturate(100%);
         opacity: 0.6;
       }
       
@@ -80,7 +97,9 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
         Services
-        <img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
+        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 </button>
 <div class="nav-dropdown-content hidden absolute left-0 top-full pt-4 w-64 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -106,9 +125,14 @@
 <!-- Language Dropdown -->
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
-<img src="/assets/images/language-icon.svg" alt="Language" class="w-5 h-5" />
+<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+<path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
+</svg>
 <span class="ml-1">English</span>
-<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
+<svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
@@ -120,7 +144,9 @@
 <div class="relative nav-dropdown">
 <button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
 Call
-<img src="/assets/images/dropdown-arrow.svg" alt="" class="dropdown-arrow" />
+<svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 </button>
 <div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
 <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
