@@ -4,40 +4,22 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style>
-      /* Prevent FOUC (Flash of Unstyled Content) - MUST BE FIRST! */
-      body {
-        visibility: hidden;
-      }
-      body.loaded {
-        visibility: visible;
-      }
-      
-      /* Prevent header flash specifically */
-      nav {
-        opacity: 0;
-        transition: opacity 0.15s ease-in;
-      }
-      body.loaded nav {
-        opacity: 1;
-      }      
-      /* Critical inline styles for nav to prevent flash */
-      nav.fixed {
+      /* Prevent FOUC with loading overlay */
+      #loading-overlay {
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
-        z-index: 50;
-        background-color: rgba(248, 250, 251, 0.8);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-        transition: all 0.3s;
-      }      
-      /* CRITICAL: Hide dropdown content until Tailwind loads */
-      .nav-dropdown-content {
-        display: none !important;
+        height: 100%;
+        background: #f8fafb;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      body.loaded .nav-dropdown:hover .nav-dropdown-content {
-        display: block !important;
+      
+      body.loaded #loading-overlay {
+        display: none;
       }
       
       .material-symbols-outlined {
@@ -102,6 +84,11 @@
   </script>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container lotus-bg">
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+<div class="w-12 h-12 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin"></div>
+</div>
+
 <!-- Global Header Copied Directly -->
 <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-sm">
 <div class="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center h-16 sm:h-20">
