@@ -6,10 +6,29 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const foucFix = `
   <script>
-    // Show body once page is loaded
-    window.addEventListener('DOMContentLoaded', function() {
-      document.body.classList.add('loaded');
-    });
+    // Show body once Tailwind is ready
+    (function() {
+      // Wait for Tailwind to process styles
+      function checkTailwind() {
+        const testEl = document.createElement('div');
+        testEl.className = 'hidden';
+        document.body.appendChild(testEl);
+        const isHidden = window.getComputedStyle(testEl).display === 'none';
+        document.body.removeChild(testEl);
+        
+        if (isHidden) {
+          document.body.classList.add('loaded');
+        } else {
+          setTimeout(checkTailwind, 50);
+        }
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTailwind);
+      } else {
+        checkTailwind();
+      }
+    })();
   </script>`;
 
 const cssAddition = `      /* Prevent FOUC (Flash of Unstyled Content) */
@@ -33,7 +52,10 @@ const htmlFiles = [
   'services/orthodontics.html',
   'services/cosmetic-fillings.html',
   'services/casted-crown.html',
-  'services/teeth-whitening.html'
+  'services/teeth-whitening.html',
+  'services/dental-implants.html',
+  'services/hollywood-smile.html',
+  'services/root-canal.html'
 ];
 
 htmlFiles.forEach(file => {
@@ -46,24 +68,17 @@ htmlFiles.forEach(file => {
 
   let content = fs.readFileSync(filePath, 'utf-8');
 
-  // Add CSS fix if not already present
-  if (!content.includes('body.loaded')) {
+  // Replace old script with new one
+  if (content.includes('body.classList.add')) {
     content = content.replace(
-      /<style>\s*\.material-symbols-outlined/,
-      `<style>\n${cssAddition}      .material-symbols-outlined`
+      /<script>\s*\/\/ Show body once page is loaded[\s\S]*?<\/script>/,
+      foucFix
     );
+    fs.writeFileSync(filePath, content, 'utf-8');
+    console.log(`✅ Updated FOUC fix: ${file}`);
+  } else {
+    console.log(`⚠️  Script not found in: ${file}`);
   }
-
-  // Add script fix if not already present
-  if (!content.includes('body.classList.add')) {
-    content = content.replace(
-      /<\/head>/,
-      `${foucFix}\n</head>`
-    );
-  }
-
-  fs.writeFileSync(filePath, content, 'utf-8');
-  console.log(`✅ FOUC fix applied: ${file}`);
 });
 
-console.log('✨ FOUC fix complete!');
+console.log('✨ FOUC fix update complete!');

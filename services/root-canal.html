@@ -44,11 +44,31 @@
     </style>
 
   <script type="module" src="/src/main.js"></script>
+  
   <script>
-    // Show body once page is loaded
-    window.addEventListener('DOMContentLoaded', function() {
-      document.body.classList.add('loaded');
-    });
+    // Show body once Tailwind is ready
+    (function() {
+      // Wait for Tailwind to process styles
+      function checkTailwind() {
+        const testEl = document.createElement('div');
+        testEl.className = 'hidden';
+        document.body.appendChild(testEl);
+        const isHidden = window.getComputedStyle(testEl).display === 'none';
+        document.body.removeChild(testEl);
+        
+        if (isHidden) {
+          document.body.classList.add('loaded');
+        } else {
+          setTimeout(checkTailwind, 50);
+        }
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTailwind);
+      } else {
+        checkTailwind();
+      }
+    })();
   </script>
 </head>
 <body class="bg-surface font-body text-on-surface antialiased">
