@@ -35,12 +35,27 @@
       });
   }
   
+  // Wait for fonts to load before injecting header
+  function waitForFonts() {
+    if (document.fonts && document.fonts.ready) {
+      console.log('⏳ Waiting for fonts to load...');
+      document.fonts.ready.then(function() {
+        console.log('✅ Fonts loaded');
+        loadHeader();
+      });
+    } else {
+      // Fallback for browsers that don't support document.fonts
+      console.log('⚠️ Font API not supported, loading header immediately');
+      loadHeader();
+    }
+  }
+  
   // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     console.log('⏳ Waiting for DOM...');
-    document.addEventListener('DOMContentLoaded', loadHeader);
+    document.addEventListener('DOMContentLoaded', waitForFonts);
   } else {
     console.log('✅ DOM already ready');
-    loadHeader();
+    waitForFonts();
   }
 })();
