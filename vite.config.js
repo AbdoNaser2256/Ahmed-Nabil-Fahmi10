@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
+import injectHeaderPlugin from './vite-plugin-inject-header.js';
 
 export default defineConfig({
   root: './',
   base: '/',
+  plugins: [injectHeaderPlugin()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
