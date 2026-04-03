@@ -130,21 +130,21 @@
       .image-after,
       .image-before {
         position: absolute;
-        top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 200%;
         object-fit: cover;
+        object-position: center center;
       }
       
-      /* Show bottom half (after) - show center of bottom 50% of stacked image */
+      /* Show bottom half (after) - shift up to reveal bottom photo */
       .image-after {
-        object-position: center 75%;
+        top: -100%;
       }
       
-      /* Show top half (before) - show center of top 50% of stacked image */
+      /* Show top half (before) - no shift to show top photo */
       .image-before {
-        object-position: center 25%;
+        top: 0;
         clip-path: inset(0 50% 0 0);
       }
       
