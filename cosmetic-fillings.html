@@ -47,6 +47,74 @@
       .nav-dropdown:hover .nav-dropdown-content {
         display: block;
       }
+      /* CSS-only hamburger menu icon */
+      .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+      }
+      .hamburger-icon span {
+        display: block;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 2px;
+      }
+      
+      /* Mobile menu slide-in animation */
+      .mobile-menu-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999999 !important;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .mobile-menu-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      .mobile-menu-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 85%;
+        max-width: 400px;
+        background: white;
+        z-index: 9999999 !important;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+      }
+      .mobile-menu-drawer.active {
+        transform: translateX(0);
+      }
+      
+      /* Lock body scroll when menu is open */
+      body.menu-open {
+        overflow: hidden;
+      }
+      
+      /* Custom scrollbar for mobile menu drawer */
+      .mobile-menu-drawer::-webkit-scrollbar {
+        width: 6px;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
     </style>
 
   <script type="module" src="/src/main.js"></script>
@@ -54,150 +122,12 @@
     <script>
 
     </script>
+  <script src="/header-loader.js" defer></script>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased">
 <!-- Global Header Copied Directly -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300 shadow-sm">
-<div class="max-w-7xl mx-auto px-4 sm:px-8 flex justify-between items-center h-16 sm:h-20">
-<!-- Logo -->
-<div class="text-xl sm:text-2xl font-bold tracking-tighter text-teal-900 flex items-center gap-2 font-headline">
-<div class="flex flex-col leading-tight">
-<div class="flex items-center gap-2">Prof. Dr Ahmed Nabil</div>
-</div>
-</div>
-
-<!-- Desktop Navigation -->
-<div class="hidden lg:flex items-center gap-x-8">
-<a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/index.html">Home</a>
-<div class="relative nav-dropdown">
-<button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
-        Services
-        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</button>
-<div class="nav-dropdown-content hidden absolute left-0 top-full pt-4 w-64 z-50">
-<div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/dental-implants.html">Dental Implants</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/hollywood-smile.html">Hollywood Smile</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/veneers.html">Veneers</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/root-canal.html">Root canal treatment</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/childrens-teeth.html">Children’s teeth</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/gum-depigmentation.html">Gum Depigmentation</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/cosmetic-fillings.html">Cosmetic fillings</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/orthodontics.html">Orthodontics</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/teeth-whitening.html">Teeth whitening</a>
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="/services/casted-crown.html">Casted Crown</a>
-</div>
-</div>
-</div>
-<a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/before-after.html">Before & After</a>
-<a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/videos.html">Videos</a>
-<a class="nav-link font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors" href="/about.html">About</a>
-</div>
-<!-- Desktop Actions - Hidden on Mobile -->
-<div class="hidden lg:flex items-center gap-4">
-<!-- Language Dropdown -->
-<div class="relative nav-dropdown">
-<button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
-<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-<path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
-</svg>
-<span class="ml-1">English</span>
-<svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</button>
-<div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
-<div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="#">Arabic</a>
-</div>
-</div>
-</div>
-<!-- Call Dropdown -->
-<div class="relative nav-dropdown">
-<button class="font-headline font-semibold text-slate-600 hover:text-teal-800 transition-colors flex items-center gap-1 pb-1">
-Call
-<svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</button>
-<div class="nav-dropdown-content hidden absolute right-0 top-full pt-4 w-48 z-50">
-<div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden backdrop-blur-xl bg-white/95">
-<a class="block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold" href="tel:+201002345678">Call Now</a>
-<button class="w-full text-left block px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 transition-colors border-l-4 border-transparent hover:border-accent-gold">Copy Number</button>
-</div>
-</div>
-</div>
-<button class="bg-accent-gold text-white px-8 py-2.5 rounded-full font-headline font-bold hover:bg-[#c4a030] active:scale-90 transition-all shadow-md">
-                Book Now
-            </button>
-</div>
-
-<!-- Mobile Menu Button -->
-<button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-teal-50 transition-colors">
-<div class="hamburger-icon text-teal-900">
-<span></span>
-<span></span>
-<span></span>
-</div>
-</button>
-</div>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden lg:hidden fixed inset-0 top-16 sm:top-20 bg-surface z-40">
-<div class="flex flex-col h-full overflow-y-auto">
-<div class="px-4 py-6 space-y-4">
-<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/index.html">Home</a>
-<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/before-after.html">Before & After</a>
-<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/videos.html">Videos</a>
-<a class="block py-3 px-4 font-headline font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/about.html">About</a>
-
-<!-- Mobile Services -->
-<div class="border-t border-slate-200 pt-4 mt-4">
-<p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Services</p>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/dental-implants.html">Dental Implants</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/hollywood-smile.html">Hollywood Smile</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/veneers.html">Veneers</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/root-canal.html">Root Canal Treatment</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/childrens-teeth.html">Children's Teeth</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/gum-depigmentation.html">Gum Depigmentation</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/cosmetic-fillings.html">Cosmetic Fillings</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/orthodontics.html">Orthodontics</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/teeth-whitening.html">Teeth Whitening</a>
-<a class="block py-2 px-4 text-sm font-semibold text-slate-700 hover:bg-teal-50 hover:text-teal-900 rounded-lg transition-colors" href="/services/casted-crown.html">Casted Crown</a>
-</div>
-
-<!-- Mobile Actions -->
-<div class="border-t border-slate-200 pt-4 mt-4 space-y-3">
-<a href="tel:+201002345678" class="block py-3 px-4 bg-teal-50 text-teal-900 font-headline font-bold rounded-lg text-center">
-<span class="material-symbols-outlined text-lg align-middle">call</span> Call Now
-</a>
-<button class="w-full py-3 px-4 bg-accent-gold text-white font-headline font-bold rounded-lg">
-Book Appointment
-</button>
-</div>
-</div>
-</div>
-</div>
-</nav>
-
-<script>
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-});
-</script>
-
-
+<!-- Header Container - Loaded dynamically -->
+<div id="header-container"></div>
 
 <main class="pt-20">
 <!-- Hero Section: Invisible Restoration -->
