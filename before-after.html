@@ -133,19 +133,19 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 200%; /* Double height because image is vertically stacked */
-        object-fit: cover;
+        height: 100%;
+        object-fit: none;
         object-position: center center;
       }
       
-      /* Show bottom half (after) - shift up to show lower part of stacked image */
+      /* Show bottom half (after) - position to show lower 50% of vertically stacked image */
       .image-after {
-        transform: translateY(-50%);
+        transform: scale(2) translateY(-25%);
       }
       
-      /* Show top half (before) - no shift needed to show upper part of stacked image */
+      /* Show top half (before) - position to show upper 50% of vertically stacked image */
       .image-before {
-        transform: translateY(0);
+        transform: scale(2) translateY(25%);
         clip-path: inset(0 50% 0 0);
       }
       
