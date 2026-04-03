@@ -135,18 +135,17 @@
         width: 200%; /* Double width to show full side-by-side image */
         height: 100%;
         object-fit: cover;
+        object-position: center center;
       }
       
       /* Show right half of side-by-side image (after) */
       .image-after {
-        object-position: right center;
-        transform: translateX(-50%);
+        left: -100%;
       }
       
       /* Show left half of side-by-side image (before) */
       .image-before {
-        object-position: left center;
-        transform: translateX(0);
+        left: 0;
         clip-path: inset(0 50% 0 0);
       }
       
