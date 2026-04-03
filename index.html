@@ -39,7 +39,7 @@
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 99998;
+        z-index: 999999 !important;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
@@ -57,10 +57,11 @@
         width: 85%;
         max-width: 400px;
         background: white;
-        z-index: 99999;
+        z-index: 9999999 !important;
         transform: translateX(100%);
         transition: transform 0.3s ease;
         overflow-y: auto;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
       }
       .mobile-menu-drawer.active {
         transform: translateX(0);
