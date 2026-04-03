@@ -45,6 +45,74 @@
       .nav-dropdown:hover .nav-dropdown-content {
         display: block;
       }
+      
+      /* CSS-only hamburger menu icon */
+      .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+      }
+      .hamburger-icon span {
+        display: block;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 2px;
+      }
+      
+      /* Mobile menu slide-in animation */
+      .mobile-menu-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999999 !important;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .mobile-menu-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      .mobile-menu-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 85%;
+        max-width: 400px;
+        background: white;
+        z-index: 9999999 !important;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+      }
+      .mobile-menu-drawer.active {
+        transform: translateX(0);
+      }
+      
+      /* Lock body scroll when menu is open */
+      body.menu-open {
+        overflow: hidden;
+      }
+      
+      /* Custom scrollbar for mobile menu drawer */
+      .mobile-menu-drawer::-webkit-scrollbar {
+        width: 6px;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+      }
+      .mobile-menu-drawer::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
     </style>
 <!-- Preload critical resources to prevent FOUC on first visit -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
