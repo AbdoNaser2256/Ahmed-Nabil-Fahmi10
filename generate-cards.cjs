@@ -1,0 +1,57 @@
+const fs = require('fs');
+
+// Read the current before-after.html
+const html = fs.readFileSync('before-after.html', 'utf-8');
+
+// Card template with slider functionality
+const cardTemplate = (caseNumber) => `
+<!-- Case ${caseNumber} -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-outline-variant/10">
+<div class="relative aspect-[4/3] bg-surface-container">
+<div class="comparison-slider" data-id="${caseNumber}">
+<img alt="After Result" class="image-after" src="assets/images/placeholder.webp"/>
+<img alt="Before Result" class="image-before" src="assets/images/placeholder.webp"/>
+<div class="slider-handle"></div>
+<input class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40" max="100" min="0" oninput="this.parentElement.querySelector('.image-before').style.clipPath = \`inset(0 \${100 - this.value}% 0 0)\`; this.parentElement.querySelector('.slider-handle').style.left = \`\${this.value}%\`" type="range" value="50"/>
+<span class="absolute top-4 left-4 px-2 py-1 bg-black/60 text-white text-[10px] rounded uppercase font-bold z-20">Before</span>
+<span class="absolute top-4 right-4 px-2 py-1 bg-primary/80 text-white text-[10px] rounded uppercase font-bold z-20">After</span>
+</div>
+</div>
+<div class="p-8">
+<h3 class="font-headline font-bold text-xl mb-3">Case ${caseNumber} - Title Placeholder</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Description placeholder for case ${caseNumber}.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-surface-container">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-tertiary-fixed">format_quote</span>
+</div>
+<p class="text-xs italic text-on-surface-variant font-medium">"Quote placeholder for case ${caseNumber}."</p>
+</div>
+</div>
+</div>`;
+
+// Generate 87 new cards (Case 11 to Case 97)
+let newCards = '';
+for (let i = 11; i <= 97; i++) {
+  newCards += cardTemplate(i);
+}
+
+// Find where Case 10 ends - we'll insert right after its closing </div>
+const searchText = '"The journey was worth every moment. Seeing the final alignment was an emotional and proud moment for me."</p>\n</div>\n</div>\n</div>';
+const insertPoint = html.indexOf(searchText);
+
+if (insertPoint === -1) {
+  console.error('Could not find insertion point');
+  process.exit(1);
+}
+
+// Insert after Case 10's closing </div>
+const actualInsertPoint = insertPoint + searchText.length;
+
+// Insert the new cards
+const updatedHtml = html.slice(0, actualInsertPoint) + newCards + html.slice(actualInsertPoint);
+
+// Write back to file
+fs.writeFileSync('before-after.html', updatedHtml, 'utf-8');
+
+console.log('✅ Successfully added 87 new cards (Case 11 to Case 97)');
+console.log('📝 Total cards now: 97');
