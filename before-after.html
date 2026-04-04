@@ -138,18 +138,17 @@
         transform-origin: center center;
       }
       
-      /* Show bottom half (after) - align bottom edge with container */
+      /* Show bottom half (after) - shift up to show bottom photo */
       .image-after {
-        top: auto;
-        bottom: 0;
-        object-position: center 85%;
+        top: -100%;
+        object-position: center center;
       }
       
       /* Show top half (before) - no shift to show top photo */
       .image-before {
         top: 0;
         clip-path: inset(0 50% 0 0);
-        object-position: center 25%;
+        object-position: center center;
       }
       
       .slider-handle {
