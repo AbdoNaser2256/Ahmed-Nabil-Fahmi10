@@ -134,21 +134,19 @@
         width: 100%;
         height: 200%;
         object-fit: cover;
-        transform: scaleY(1.05);
-        transform-origin: center center;
+        object-position: center center;
       }
       
-      /* Show bottom half (after) - shift up to show bottom photo */
+      /* Show bottom half (after) - align bottom edge with container */
       .image-after {
-        top: -100%;
-        object-position: center center;
+        top: auto;
+        bottom: 0;
       }
       
       /* Show top half (before) - no shift to show top photo */
       .image-before {
         top: 0;
         clip-path: inset(0 50% 0 0);
-        object-position: center center;
       }
       
       .slider-handle {
