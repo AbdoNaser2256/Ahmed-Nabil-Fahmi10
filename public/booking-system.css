@@ -1,0 +1,357 @@
+/* Booking Modal Styles */
+.booking-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.booking-modal.active {
+    display: flex;
+}
+
+.booking-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.booking-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.booking-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: #f3f4f6;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: #6b7280;
+}
+
+.booking-modal-close:hover {
+    background: #e5e7eb;
+    color: #374151;
+    transform: rotate(90deg);
+}
+
+.booking-modal-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #006a71;
+    margin-bottom: 0.5rem;
+    font-family: 'Manrope', sans-serif;
+}
+
+.booking-modal-subtitle {
+    color: #6b7280;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #374151;
+    font-family: 'Manrope', sans-serif;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    font-family: 'Manrope', sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #006a71;
+    box-shadow: 0 0 0 3px rgba(0, 106, 113, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.booking-submit-btn {
+    background: #D4AF37;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Manrope', sans-serif;
+}
+
+.booking-submit-btn:hover {
+    background: #c4a030;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
+}
+
+.booking-submit-btn:active {
+    transform: translateY(0);
+}
+
+.booking-submit-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* WhatsApp Widget Styles */
+.whatsapp-widget {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    z-index: 999998;
+    width: 380px;
+    max-width: calc(100vw - 2rem);
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.3s ease-out;
+}
+
+.whatsapp-widget.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.whatsapp-widget-content {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.whatsapp-widget-header {
+    background: #25D366;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.whatsapp-widget-avatar {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.whatsapp-widget-info {
+    flex: 1;
+    color: white;
+}
+
+.whatsapp-widget-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+}
+
+.whatsapp-widget-info p {
+    font-size: 0.75rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.whatsapp-widget-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.whatsapp-widget-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.whatsapp-widget-body {
+    padding: 1.5rem;
+    background: #ECE5DD;
+    min-height: 150px;
+}
+
+.whatsapp-widget-message {
+    background: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    max-width: 85%;
+}
+
+.whatsapp-widget-message p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.whatsapp-widget-footer {
+    padding: 1rem;
+    background: #f3f4f6;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+}
+
+.whatsapp-widget-footer textarea {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 1.5rem;
+    font-size: 0.95rem;
+    resize: none;
+    font-family: 'Manrope', sans-serif;
+    max-height: 100px;
+}
+
+.whatsapp-widget-footer textarea:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+.whatsapp-send-btn {
+    background: #25D366;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.whatsapp-send-btn:hover {
+    background: #20BA5A;
+    transform: scale(1.05);
+}
+
+.whatsapp-send-btn:active {
+    transform: scale(0.95);
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+    .booking-modal-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-modal-title {
+        font-size: 1.5rem;
+    }
+
+    .whatsapp-widget {
+        bottom: 5.5rem;
+        right: 1rem;
+        width: calc(100vw - 2rem);
+    }
+}
+
+/* Scrollbar styling for modal */
+.booking-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.booking-modal-content::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+}
+
+.booking-modal-content::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.booking-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
