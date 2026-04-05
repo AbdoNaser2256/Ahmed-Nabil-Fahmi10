@@ -282,6 +282,47 @@
                 openWhatsAppWidget();
             });
         }
+
+        // Handle home page booking form
+        const homeForm = document.getElementById('home-booking-form');
+        if (homeForm) {
+            homeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const data = {
+                    fullName: formData.get('fullName'),
+                    age: formData.get('age'),
+                    citizenship: formData.get('citizenship'),
+                    phone: formData.get('phone'),
+                    phone2: formData.get('phone2'),
+                    visitType: formData.get('visitType'),
+                    notes: formData.get('notes')
+                };
+
+                // Format WhatsApp message
+                let message = `*New Appointment Request*\n\n`;
+                message += `*Name:* ${data.fullName}\n`;
+                message += `*Age:* ${data.age}\n`;
+                message += `*Citizenship:* ${data.citizenship}\n`;
+                message += `*Phone:* ${data.phone}\n`;
+                if (data.phone2) {
+                    message += `*Second Phone:* ${data.phone2}\n`;
+                }
+                message += `*Visit Type:* ${data.visitType}\n`;
+                if (data.notes) {
+                    message += `*Notes:* ${data.notes}\n`;
+                }
+
+                // Encode and open WhatsApp
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+                window.open(whatsappURL, '_blank');
+
+                // Reset form
+                e.target.reset();
+            });
+        }
     }
 
     // Run when DOM is ready
