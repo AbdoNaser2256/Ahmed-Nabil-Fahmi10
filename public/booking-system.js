@@ -240,7 +240,20 @@
         const ctaButtons = document.querySelectorAll('button:not(#whatsapp-send-btn):not(.whatsapp-widget-close):not(.booking-modal-close)');
         ctaButtons.forEach(button => {
             const text = button.textContent.toLowerCase();
-            if (text.includes('book') || text.includes('appointment') || text.includes('consultation') || text.includes('schedule') || text.includes('consult')) {
+            // Check for various CTA keywords
+            if (text.includes('book') || 
+                text.includes('appointment') || 
+                text.includes('consultation') || 
+                text.includes('schedule') || 
+                text.includes('consult') || 
+                text.includes('start') || 
+                text.includes('journey') || 
+                text.includes('contact') || 
+                text.includes('request') || 
+                text.includes('talk') || 
+                text.includes('specialist') || 
+                text.includes('call') ||
+                text.includes('now')) {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     openBookingModal();
