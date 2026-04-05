@@ -334,6 +334,26 @@
         bottom: 5.5rem;
         right: 1rem;
         width: calc(100vw - 2rem);
+        max-width: 340px;
+    }
+
+    .whatsapp-widget-body {
+        min-height: 120px;
+        padding: 1rem;
+    }
+
+    .whatsapp-widget-footer {
+        padding: 0.75rem;
+    }
+
+    .whatsapp-widget-footer textarea {
+        font-size: 0.875rem;
+        padding: 0.625rem;
+    }
+
+    .whatsapp-send-btn {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }
 

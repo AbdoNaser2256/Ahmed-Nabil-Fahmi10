@@ -240,8 +240,21 @@
         const ctaButtons = document.querySelectorAll('button:not(#whatsapp-send-btn):not(.whatsapp-widget-close):not(.booking-modal-close)');
         ctaButtons.forEach(button => {
             const text = button.textContent.toLowerCase();
-            // Check for various CTA keywords
-            if (text.includes('book') || 
+            
+            // Check if it's a gallery/case studies button - link to before-after page
+            if (text.includes('case') || 
+                text.includes('studies') || 
+                text.includes('gallery') || 
+                text.includes('galleries') || 
+                text.includes('before') || 
+                text.includes('after')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = '/before-after.html';
+                });
+            }
+            // Check for various CTA keywords - open booking form
+            else if (text.includes('book') || 
                 text.includes('appointment') || 
                 text.includes('consultation') || 
                 text.includes('schedule') || 
