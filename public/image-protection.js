@@ -6,7 +6,7 @@
 
     // Disable right-click on images
     document.addEventListener('contextmenu', function(e) {
-        if (e.target.tagName === 'IMG' || e.target.classList.contains('protected-image')) {
+        if (e.target.classList.contains('protected-image')) {
             e.preventDefault();
             return false;
         }
@@ -14,7 +14,7 @@
 
     // Disable dragging of images
     document.addEventListener('dragstart', function(e) {
-        if (e.target.tagName === 'IMG' || e.target.classList.contains('protected-image')) {
+        if (e.target.classList.contains('protected-image')) {
             e.preventDefault();
             return false;
         }
@@ -41,7 +41,7 @@
 
     // Add transparent overlay to all images when page loads
     function addImageOverlays() {
-        const images = document.querySelectorAll('img, .protected-image');
+        const images = document.querySelectorAll('.protected-image');
         images.forEach(function(img) {
             // Skip if already has overlay
             if (img.parentElement.classList.contains('image-protection-wrapper')) {
