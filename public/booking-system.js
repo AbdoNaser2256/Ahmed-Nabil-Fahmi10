@@ -295,9 +295,7 @@
                     age: formData.get('age'),
                     citizenship: formData.get('citizenship'),
                     phone: formData.get('phone'),
-                    phone2: formData.get('phone2'),
-                    visitType: formData.get('visitType'),
-                    notes: formData.get('notes')
+                    visitType: formData.get('visitType')
                 };
 
                 // Format WhatsApp message
@@ -306,13 +304,7 @@
                 message += `*Age:* ${data.age}\n`;
                 message += `*Citizenship:* ${data.citizenship}\n`;
                 message += `*Phone:* ${data.phone}\n`;
-                if (data.phone2) {
-                    message += `*Second Phone:* ${data.phone2}\n`;
-                }
                 message += `*Visit Type:* ${data.visitType}\n`;
-                if (data.notes) {
-                    message += `*Notes:* ${data.notes}\n`;
-                }
 
                 // Encode and open WhatsApp
                 const encodedMessage = encodeURIComponent(message);
