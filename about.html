@@ -143,6 +143,34 @@
         }
       })();
   </script>
+  <script src="/image-protection.js" defer></script>
+  <style>
+    /* Image Protection CSS */
+    img, .protected-image {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      pointer-events: none;
+    }
+    .image-protection-wrapper {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .image-protection-overlay {
+      pointer-events: auto;
+    }
+    /* Re-enable pointer events for clickable elements */
+    a, button, input, select, textarea {
+      pointer-events: auto !important;
+    }
+  </style>
 <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container lotus-bg">
@@ -176,7 +204,7 @@
 <div class="lg:col-span-5 relative">
 <div class="absolute -top-10 -left-10 w-64 h-64 bg-secondary/10 rounded-xl -z-10 opacity-50 motif-pattern"></div>
 <div class="rounded-lg overflow-hidden editorial-shadow border-4 border-white aspect-[4/5] relative">
-<img alt="Dr. Julian Thorne" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAaULjo-cbTf9fzo9DDjV-QAXzXwGCTySMAy3qPsGGd7GUmzWnjNArg_sgrGbyLBjyAq1BUFbaCmH6Rc-bBdktKJQ3k62DUEztSjo39PrwUzlAS708zd7S3l_n-UoaOI0lNnH-Xx3q5K-sPRpBW_DmEOSL-Lm6V5QClB-wBCBdk5UNvR0cudQzcRO1HZHjdoeCrzzAXsnjImuFG-y8iC3hu8vpa8qkwj6mBskHMXdk3SxXi2BCt2FojKRLvyywOzuVKoYIS4Sfr0r1"/>
+<div class="protected-image w-full h-full bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700" style="background-image: url('/about-hero.png?v=1');" role="img" aria-label="Prof. Dr Ahmed Nabil Fahmi"></div>
 <div class="absolute inset-0 border-[20px] border-primary/5 pointer-events-none"></div>
 </div>
 <div class="absolute -bottom-6 -right-6 p-8 bg-white editorial-shadow rounded-lg max-w-[240px] border-l-4 border-secondary">
